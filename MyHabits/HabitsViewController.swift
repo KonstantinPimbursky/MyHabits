@@ -12,7 +12,7 @@ class HabitsViewController: UIViewController {
     
     // MARK: - PROPERTIES
     
-    private let habitsCollectionView = UICollectionView()
+//    private let habitsCollectionView = UICollectionView()
     
     // MARK: - FUNCTIONS
     override func viewDidLoad() {
@@ -28,14 +28,14 @@ class HabitsViewController: UIViewController {
 
 }
 
-extension HabitsViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return HabitsStore.shared.habits.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-    }
-    
-    
-}
+//extension HabitsViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        return HabitsStore.shared.habits.count
+//    }
+//    
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        
+//    }
+//    
+//    
+//}

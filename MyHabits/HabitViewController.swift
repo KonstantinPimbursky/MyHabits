@@ -153,7 +153,11 @@ class HabitViewController: UIViewController {
     }
     
     @objc func changeColor() {
-        
+        let colorPicker = UIColorPickerViewController()
+        colorPicker.title = "Выберите цвет"
+        colorPicker.selectedColor = .orange
+        colorPicker.delegate = self
+        present(colorPicker, animated: true, completion: nil)
     }
     
     @objc func cancelAction() {
@@ -206,4 +210,12 @@ class HabitViewController: UIViewController {
  
         NSLayoutConstraint.activate(constraints)
     }
+}
+
+extension HabitViewController: UIColorPickerViewControllerDelegate {
+    func colorPickerViewControllerDidSelectColor(_ viewController: UIColorPickerViewController) {
+        colorCircleView.backgroundColor = viewController.selectedColor
+    }
+    
+    
 }
