@@ -137,22 +137,22 @@ class HabitViewController: UIViewController {
         setupViews()
         
         timeTextField.inputView = datePicker
-        formatter.dateFormat = "hh:mm a"
+        formatter.dateFormat = "HH:mm"
         timeTextField.text = formatter.string(from: datePicker.date)
         datePicker.addTarget(self, action: #selector(timeChanged), for: .valueChanged)
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(doneAction)))
         colorCircleView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(changeColor)))
     }
     
-    @objc func doneAction () {
+    @objc private func doneAction () {
         view.endEditing(true)
     }
     
-    @objc func timeChanged() {
+    @objc private func timeChanged() {
         timeTextField.text = formatter.string(from: datePicker.date)
     }
     
-    @objc func changeColor() {
+    @objc private func changeColor() {
         let colorPicker = UIColorPickerViewController()
         colorPicker.title = "Выберите цвет"
         colorPicker.selectedColor = .orange

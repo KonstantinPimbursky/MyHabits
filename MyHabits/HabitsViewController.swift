@@ -12,7 +12,7 @@ class HabitsViewController: UIViewController {
     
     // MARK: - PROPERTIES
     
-//    private let habitsCollectionView = UICollectionView()
+//    public let habitsCollectionView = UICollectionView()
     
     // MARK: - FUNCTIONS
     override func viewDidLoad() {
