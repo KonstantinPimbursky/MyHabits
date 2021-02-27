@@ -39,7 +39,7 @@ class HabitCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-        label.textColor = UIColor(named: "My Light Grey Color")
+        label.textColor = .systemGray2
         return label
     }()
     
@@ -48,7 +48,7 @@ class HabitCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 13, weight: .regular)
-        label.textColor = .systemGray2
+        label.textColor = .systemGray
         return label
     }()
     
@@ -56,10 +56,11 @@ class HabitCollectionViewCell: UICollectionViewCell {
     private let colorCircle: UIView = {
         let someView = UIView()
         someView.translatesAutoresizingMaskIntoConstraints = false
-        someView.widthAnchor.constraint(equalToConstant: 130 - 47*2).isActive = true
-        someView.heightAnchor.constraint(equalToConstant: 130 - 47*2).isActive = true
-        someView.layer.cornerRadius = (130 - 47*2)/2
+        someView.widthAnchor.constraint(equalToConstant: 36).isActive = true
+        someView.heightAnchor.constraint(equalToConstant: 36).isActive = true
+        someView.layer.cornerRadius = 18
         someView.backgroundColor = .white
+        someView.layer.borderWidth = 2
         return someView
     }()
     
@@ -85,6 +86,9 @@ class HabitCollectionViewCell: UICollectionViewCell {
     // MARK: - FUNCTIONS
     private func setupViews() {
         contentView.addSubviews(nameLabel, timeLabel, inARowLabel, colorCircle, checkMarkImageView)
+        contentView.layer.cornerRadius = 8
+        contentView.layer.masksToBounds = false
+        contentView.clipsToBounds = true
         
         let constraints = [
             contentView.heightAnchor.constraint(equalToConstant: 130),

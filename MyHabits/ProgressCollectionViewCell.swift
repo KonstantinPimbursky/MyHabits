@@ -37,13 +37,15 @@ class ProgressCollectionViewCell: UICollectionViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .systemGray
         label.font = UIFont.systemFont(ofSize: 13, weight: .semibold)
+        label.text = "\(Int(HabitsStore.shared.todayProgress * 100))%"
         return label
     }()
     
     // MARK: - INIT
     override init(frame: CGRect) {
         super.init(frame: frame)
-        percentProgressLabel.text = "\(Int(habitsProgressView.progress * 100))%"
+        
+        setupViews()
     }
     
     required init?(coder: NSCoder) {
@@ -51,4 +53,31 @@ class ProgressCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: - FUNCTIONS
+    
+    private func setupViews() {
+        contentView.addSubviews(nameLabel, habitsProgressView, percentProgressLabel)
+        contentView.layer.cornerRadius = 4
+        contentView.layer.masksToBounds = false
+        contentView.clipsToBounds = true
+        contentView.backgroundColor = .white
+        
+        let constraints = [
+            contentView.heightAnchor.constraint(equalToConstant: 60),
+            
+            nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12),
+            
+            habitsProgressView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 10),
+            habitsProgressView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            habitsProgressView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),
+            habitsProgressView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -15),
+            habitsProgressView.heightAnchor.constraint(equalToConstant: 7),
+            
+            percentProgressLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            percentProgressLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),
+            
+        ]
+        
+        NSLayoutConstraint.activate(constraints)
+    }
 }
