@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B57FCF6A25E4E3220056B831 /* ProgressCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57FCF6925E4E3220056B831 /* ProgressCollectionViewCell.swift */; };
 		B57FCF6C25E4E34F0056B831 /* HabitCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57FCF6B25E4E34F0056B831 /* HabitCollectionViewCell.swift */; };
+		B59F909525EB75D3001A0355 /* HabitDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59F909425EB75D3001A0355 /* HabitDetailsViewController.swift */; };
 		B5F65DA625DA0A9500273DC8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F65DA525DA0A9500273DC8 /* AppDelegate.swift */; };
 		B5F65DA825DA0A9500273DC8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F65DA725DA0A9500273DC8 /* SceneDelegate.swift */; };
 		B5F65DAA25DA0A9500273DC8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F65DA925DA0A9500273DC8 /* ViewController.swift */; };
@@ -24,6 +25,7 @@
 /* Begin PBXFileReference section */
 		B57FCF6925E4E3220056B831 /* ProgressCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCollectionViewCell.swift; sourceTree = "<group>"; };
 		B57FCF6B25E4E34F0056B831 /* HabitCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCollectionViewCell.swift; sourceTree = "<group>"; };
+		B59F909425EB75D3001A0355 /* HabitDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitDetailsViewController.swift; sourceTree = "<group>"; };
 		B5F65DA225DA0A9500273DC8 /* MyHabits.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyHabits.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5F65DA525DA0A9500273DC8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5F65DA725DA0A9500273DC8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -76,11 +78,12 @@
 				B5F65DB025DA0AA500273DC8 /* LaunchScreen.storyboard */,
 				B5F65DB325DA0AA500273DC8 /* Info.plist */,
 				B5F65DBB25DAD14900273DC8 /* HabitsStore.swift */,
+				B5F65DBF25DAD3B500273DC8 /* InfoViewController.swift */,
 				B5F65DBD25DAD39E00273DC8 /* HabitsViewController.swift */,
+				B5F65DC125DAED7900273DC8 /* HabitViewController.swift */,
 				B57FCF6925E4E3220056B831 /* ProgressCollectionViewCell.swift */,
 				B57FCF6B25E4E34F0056B831 /* HabitCollectionViewCell.swift */,
-				B5F65DBF25DAD3B500273DC8 /* InfoViewController.swift */,
-				B5F65DC125DAED7900273DC8 /* HabitViewController.swift */,
+				B59F909425EB75D3001A0355 /* HabitDetailsViewController.swift */,
 			);
 			path = MyHabits;
 			sourceTree = "<group>";
@@ -164,6 +167,7 @@
 				B5F65DBE25DAD39E00273DC8 /* HabitsViewController.swift in Sources */,
 				B5F65DC025DAD3B500273DC8 /* InfoViewController.swift in Sources */,
 				B57FCF6A25E4E3220056B831 /* ProgressCollectionViewCell.swift in Sources */,
+				B59F909525EB75D3001A0355 /* HabitDetailsViewController.swift in Sources */,
 				B5F65DA825DA0A9500273DC8 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

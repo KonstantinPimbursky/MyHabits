@@ -22,6 +22,11 @@ class HabitCollectionViewCell: UICollectionViewCell {
             } else {
                 inARowLabel.text = "Подряд: \(habit!.trackDates.count)"
             }
+            if habit!.isAlreadyTakenToday {
+                colorCircle.backgroundColor = habit?.color
+            } else {
+                colorCircle.backgroundColor = .white
+            }
             colorCircle.layer.borderColor = habit?.color.cgColor
         }
     }
@@ -59,15 +64,14 @@ class HabitCollectionViewCell: UICollectionViewCell {
         someView.widthAnchor.constraint(equalToConstant: 36).isActive = true
         someView.heightAnchor.constraint(equalToConstant: 36).isActive = true
         someView.layer.cornerRadius = 18
-        someView.backgroundColor = .white
         someView.layer.borderWidth = 2
         return someView
     }()
     
     private let checkMarkImageView: UIImageView = {
-        let imageView = UIImageView()
+           let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = .checkmark
+        imageView.image = UIImage(systemName: "checkmark")
         imageView.tintColor = .white
         return imageView
     }()
@@ -76,6 +80,9 @@ class HabitCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         contentView.backgroundColor = .white
+        
+        let recognizer = UITapGestureRecognizer(target: self, action: #selector(trackHabit))
+        colorCircle.addGestureRecognizer(recognizer)
         setupViews()
     }
     
@@ -111,6 +118,15 @@ class HabitCollectionViewCell: UICollectionViewCell {
         ]
         
         NSLayoutConstraint.activate(constraints)
+    }
+    
+    @objc private func trackHabit() {
+        if habit!.isAlreadyTakenToday {
+            return
+        } else {
+            HabitsStore.shared.track(habit!)
+            colorCircle.backgroundColor = habit?.color
+        }
     }
     
 

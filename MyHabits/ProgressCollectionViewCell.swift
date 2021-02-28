@@ -11,7 +11,12 @@ import UIKit
 class ProgressCollectionViewCell: UICollectionViewCell {
     
     // MARK: - PROPERTIES
-    
+    var todayProgress: Float? {
+        didSet {
+            habitsProgressView.progress = todayProgress!
+            percentProgressLabel.text = "\(Int(todayProgress! * 100))%"
+        }
+    }
     
     private let nameLabel: UILabel = {
         let label = UILabel()
@@ -28,7 +33,6 @@ class ProgressCollectionViewCell: UICollectionViewCell {
         progressView.progressViewStyle = .default
         progressView.trackTintColor = .systemGray2
         progressView.progressTintColor = UIColor(named: "My Purple Color")
-        progressView.progress = HabitsStore.shared.todayProgress
         return progressView
     }()
     
@@ -37,7 +41,6 @@ class ProgressCollectionViewCell: UICollectionViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .systemGray
         label.font = UIFont.systemFont(ofSize: 13, weight: .semibold)
-        label.text = "\(Int(HabitsStore.shared.todayProgress * 100))%"
         return label
     }()
     

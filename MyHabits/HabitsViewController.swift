@@ -25,9 +25,47 @@ class HabitsViewController: UIViewController {
 
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "Сегодня"
+        navigationItem.largeTitleDisplayMode = .always
         navigationController?.navigationBar.backgroundColor = .white
         
         setupCollection()
+    }
+    
+    override func viewSafeAreaInsetsDidChange() {
+        super.viewSafeAreaInsetsDidChange()
+        habitsCollectionView.reloadData()
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print(type(of: self), #function)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print(type(of: self), #function)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        print(type(of: self), #function)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        print(type(of: self), #function)
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        print(type(of: self), #function)
+        habitsCollectionView.reloadData()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        print(type(of: self), #function)
     }
     
     private func setupCollection() {
@@ -52,6 +90,7 @@ class HabitsViewController: UIViewController {
     }
 }
 
+// MARK: - EXTENSIONS
 extension HabitsViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -80,6 +119,7 @@ extension HabitsViewController: UICollectionViewDataSource, UICollectionViewDele
         switch indexPath.section {
         case 0:
             let cell: ProgressCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProgressCell", for: indexPath) as! ProgressCollectionViewCell
+            cell.todayProgress = HabitsStore.shared.todayProgress
             return cell
         default:
             let cell: HabitCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "HabitCell", for: indexPath) as! HabitCollectionViewCell
@@ -95,6 +135,12 @@ extension HabitsViewController: UICollectionViewDataSource, UICollectionViewDele
         default:
             return UIEdgeInsets.init(top: 6, left: 16, bottom: 22, right: 16)
         }
-        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard indexPath.section != 0 else { return }
+        let habit = HabitsStore.shared.habits[indexPath.item]
+        let habitDetailsViewController = HabitDetailsViewController.init(habit: habit)
+        navigationController?.pushViewController(habitDetailsViewController, animated: true)
     }
 }

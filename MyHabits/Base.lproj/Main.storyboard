@@ -28,7 +28,7 @@
         <!--HabitsViewController-->
         <scene sceneID="o0J-ff-qA0">
             <objects>
-                <viewController title="HabitsViewController" id="cMi-bn-5eY" customClass="HabitsViewController" customModule="MyHabits" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HabitsViewController" title="HabitsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="cMi-bn-5eY" customClass="HabitsViewController" customModule="MyHabits" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ztJ-cc-K6A">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
