@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol CloseViewController {
+    func closeViewController() -> Void
+}
+
 class HabitDetailsViewController: UIViewController {
     //MARK: - PROPERTIES
     public var habit: Habit
@@ -63,7 +67,10 @@ class HabitDetailsViewController: UIViewController {
     }
     
     @objc private func editAction() {
-        
+        let habitViewController = HabitViewController()
+        habitViewController.habit = habit
+        habitViewController.closeViewControllerDelegate = self
+        present(habitViewController, animated: true, completion: nil)
     }
 }
 
@@ -75,17 +82,18 @@ extension HabitDetailsViewController: UITableViewDataSource, UITableViewDelegate
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return HabitsStore.shared.dates.count
+        return HabitsStore.shared.dates.count - 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DetailCell", for: indexPath)
+        
         let formatter = DateFormatter()
         formatter.dateFormat = "dd MMMM y"
-        let habitNumber = HabitsStore.shared.dates.count - 1 - indexPath.item
+        
+        let habitNumber = HabitsStore.shared.dates.count - 2 - indexPath.item
+        
         switch habitNumber {
-        case HabitsStore.shared.dates.count - 1:
-            cell.textLabel?.text = "Сегодня"
         case HabitsStore.shared.dates.count - 2:
             cell.textLabel?.text = "Вчера"
         case HabitsStore.shared.dates.count - 3:
@@ -93,13 +101,16 @@ extension HabitDetailsViewController: UITableViewDataSource, UITableViewDelegate
         default:
             cell.textLabel?.text = formatter.string(from: HabitsStore.shared.dates[habitNumber])
         }
+        
         if HabitsStore.shared.habit(habit, isTrackedIn: HabitsStore.shared.dates[habitNumber]) {
             cell.accessoryType = .checkmark
             cell.tintColor = UIColor(named: "My Purple Color")
         } else {
             cell.accessoryType = .none
         }
+        
         cell.backgroundColor = .white
+        
         return cell
     }
     
@@ -109,6 +120,12 @@ extension HabitDetailsViewController: UITableViewDataSource, UITableViewDelegate
     
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         return false
+    }
+}
+
+extension HabitDetailsViewController: CloseViewController {
+    func closeViewController() {
+        navigationController?.popToRootViewController(animated: true)
     }
 }
 

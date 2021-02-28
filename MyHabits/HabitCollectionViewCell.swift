@@ -76,6 +76,8 @@ class HabitCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
     
+    var delegate: ReloadCollectionView?
+    
     // MARK: - INIT
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -126,6 +128,7 @@ class HabitCollectionViewCell: UICollectionViewCell {
         } else {
             HabitsStore.shared.track(habit!)
             colorCircle.backgroundColor = habit?.color
+            self.delegate?.reloadCollectionView()
         }
     }
     

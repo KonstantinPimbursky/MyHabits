@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol  ReloadCollectionView {
+    func reloadCollectionView() -> Void
+}
+
 class HabitsViewController: UIViewController {
     
     // MARK: - PROPERTIES
@@ -31,41 +35,8 @@ class HabitsViewController: UIViewController {
         setupCollection()
     }
     
-    override func viewSafeAreaInsetsDidChange() {
-        super.viewSafeAreaInsetsDidChange()
-        habitsCollectionView.reloadData()
-    }
-    
-    
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        print(type(of: self), #function)
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        print(type(of: self), #function)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        print(type(of: self), #function)
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        print(type(of: self), #function)
-    }
-    
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        print(type(of: self), #function)
         habitsCollectionView.reloadData()
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        print(type(of: self), #function)
     }
     
     private func setupCollection() {
@@ -87,6 +58,12 @@ class HabitsViewController: UIViewController {
             
         ]
         NSLayoutConstraint.activate(constraints)
+    }
+    
+    @IBAction func createNewHabit(_ sender: Any) {
+        let habitViewController = HabitViewController()
+        habitViewController.reloadCollectionViewDelegate = self
+        present(habitViewController, animated: true, completion: nil)
     }
 }
 
@@ -124,6 +101,7 @@ extension HabitsViewController: UICollectionViewDataSource, UICollectionViewDele
         default:
             let cell: HabitCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "HabitCell", for: indexPath) as! HabitCollectionViewCell
             cell.habit = HabitsStore.shared.habits[indexPath.item]
+            cell.delegate = self
             return cell
         }
     }
@@ -142,5 +120,10 @@ extension HabitsViewController: UICollectionViewDataSource, UICollectionViewDele
         let habit = HabitsStore.shared.habits[indexPath.item]
         let habitDetailsViewController = HabitDetailsViewController.init(habit: habit)
         navigationController?.pushViewController(habitDetailsViewController, animated: true)
+    }
+}
+extension HabitsViewController: ReloadCollectionView {
+    func reloadCollectionView() {
+        habitsCollectionView.reloadData()
     }
 }

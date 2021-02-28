@@ -40,7 +40,7 @@
                         <barButtonItem key="rightBarButtonItem" image="plus" catalog="system" id="U9v-2q-lq4">
                             <color key="tintColor" name="My Purple Color"/>
                             <connections>
-                                <segue destination="7HL-id-wL4" kind="presentation" id="drM-Uv-GRV"/>
+                                <action selector="createNewHabit:" destination="cMi-bn-5eY" id="wC6-aw-Vmi"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
