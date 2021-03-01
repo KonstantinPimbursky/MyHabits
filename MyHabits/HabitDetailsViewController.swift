@@ -44,6 +44,7 @@ class HabitDetailsViewController: UIViewController {
         view.addSubview(detailsTableView)
         view.backgroundColor = UIColor(named: "My Light Grey Color")
         titleLabel.text = habit.name
+        titleLabel.textAlignment = .center
         navigationItem.titleView = titleLabel
         navigationItem.largeTitleDisplayMode = .never
         navigationController?.navigationBar.tintColor = UIColor(named: "My Purple Color")

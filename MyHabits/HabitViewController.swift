@@ -172,7 +172,7 @@ class HabitViewController: UIViewController {
         
         colorCircleView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(changeColor)))
         
-        deleteHabitButton.addTarget(self, action: #selector(deleteHabit), for: .touchUpInside)
+        deleteHabitButton.addTarget(self, action: #selector(showAlert), for: .touchUpInside)
     }
     
     @objc private func doneAction () {
@@ -213,17 +213,26 @@ class HabitViewController: UIViewController {
             self.dismiss(animated: true, completion: nil)
         }
         self.reloadCollectionViewDelegate?.reloadCollectionView()
+        self.closeViewControllerDelegate?.closeViewController()
         self.dismiss(animated: true, completion: nil)
     }
     
-    @objc func deleteHabit() {
-        let store = HabitsStore.shared
-        let newHabitsArray = store.habits.filter{ $0 != habit }
-        store.habits = newHabitsArray
-        store.save()
-        self.reloadCollectionViewDelegate?.reloadCollectionView()
-        self.closeViewControllerDelegate?.closeViewController()
-        self.dismiss(animated: true, completion: nil)
+    @objc func showAlert() {
+        let alertController = UIAlertController(title: "Удалить привычку", message: "Вы хотите удалить привычку \(habit!.name)?", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "Отмена", style: .default) { _ in
+            print("Отмена")
+        }
+        let deleteAction = UIAlertAction(title: "Удалить", style: .destructive) {_ in
+            let store = HabitsStore.shared
+            let newHabitsArray = store.habits.filter{ $0 != self.habit }
+            store.habits = newHabitsArray
+            store.save()
+            self.closeViewControllerDelegate?.closeViewController()
+            self.dismiss(animated: true, completion: nil)
+        }
+        alertController.addAction(cancelAction)
+        alertController.addAction(deleteAction)
+        self.present(alertController, animated: true, completion: nil)
     }
     
     private func setupViews() {

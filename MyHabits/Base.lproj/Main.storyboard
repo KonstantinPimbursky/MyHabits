@@ -49,21 +49,6 @@
             </objects>
             <point key="canvasLocation" x="174" y="-260"/>
         </scene>
-        <!--Habit View Controller-->
-        <scene sceneID="Sec-FU-SRg">
-            <objects>
-                <viewController id="7HL-id-wL4" customClass="HabitViewController" customModule="MyHabits" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="MVf-C6-6eJ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="DIw-4g-6Cf"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="SJy-g2-qyv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1078" y="-260"/>
-        </scene>
         <!--Привычки-->
         <scene sceneID="Pqd-xH-V4t">
             <objects>
