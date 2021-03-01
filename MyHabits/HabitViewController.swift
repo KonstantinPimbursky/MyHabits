@@ -12,6 +12,7 @@ class HabitViewController: UIViewController {
     
     // MARK: - PROPERTIES
     
+    ///Привычка, которую необходимо отредактировать
     public var habit: Habit? {
         didSet {
             habitTextField.text = habit?.name
@@ -124,6 +125,8 @@ class HabitViewController: UIViewController {
     ///Форматер даты/времени
     private let formatter = DateFormatter()
     
+    
+    ///Кнопка "Удалить привычку"
     private let deleteHabitButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -132,8 +135,10 @@ class HabitViewController: UIViewController {
         return button
     }()
     
+    ///Делегат для обновления коллекции
     var reloadCollectionViewDelegate: ReloadCollectionView?
     
+    ///Делегат для закрытия окон
     var closeViewControllerDelegate: CloseViewController?
     
     
@@ -175,10 +180,12 @@ class HabitViewController: UIViewController {
         deleteHabitButton.addTarget(self, action: #selector(showAlert), for: .touchUpInside)
     }
     
+    ///Закрыть DataPicker
     @objc private func doneAction () {
         view.endEditing(true)
     }
     
+    ///Чтобы время в textField изменялось при изменении положения в DataPicker
     @objc private func timeChanged() {
         timeTextField.text = formatter.string(from: datePicker.date)
     }
@@ -271,6 +278,8 @@ class HabitViewController: UIViewController {
             timeTextField.leadingAnchor.constraint(equalTo: timeTextLabel.trailingAnchor)
         ]
         
+        
+        ///Если мы передали привычку для редактирования, то добавляем кнопку удаления привычки
         if habit != nil {
             view.addSubview(deleteHabitButton)
             constraints += [

@@ -11,6 +11,8 @@ import UIKit
 class ProgressCollectionViewCell: UICollectionViewCell {
     
     // MARK: - PROPERTIES
+    
+    ///Передаем прогресс
     var todayProgress: Float? {
         didSet {
             habitsProgressView.progress = todayProgress!
@@ -18,6 +20,7 @@ class ProgressCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    ///Название ячейки
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -27,6 +30,7 @@ class ProgressCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
+    ///Полоса прогресса
     private let habitsProgressView: UIProgressView = {
         let progressView = UIProgressView()
         progressView.translatesAutoresizingMaskIntoConstraints = false
@@ -36,6 +40,7 @@ class ProgressCollectionViewCell: UICollectionViewCell {
         return progressView
     }()
     
+    ///Прогресс в процентах
     private let percentProgressLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false

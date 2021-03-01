@@ -8,6 +8,7 @@
 
 import UIKit
 
+///Протокол для делегата, чтобы в необходимый момент обновить колеекцию
 protocol  ReloadCollectionView {
     func reloadCollectionView() -> Void
 }
@@ -16,6 +17,8 @@ class HabitsViewController: UIViewController {
     
     // MARK: - PROPERTIES
     
+    
+    ///Коллекция, содержащая привычки и ProgressBar
     public lazy var habitsCollectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         collectionView.translatesAutoresizingMaskIntoConstraints = false

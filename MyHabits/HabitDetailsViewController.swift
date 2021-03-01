@@ -14,10 +14,14 @@ protocol CloseViewController {
 
 class HabitDetailsViewController: UIViewController {
     //MARK: - PROPERTIES
+    
+    ///Привычка, чьи детали мы показываем
     public var habit: Habit
     
+    ///Таблица, содержащая даты
     private let detailsTableView = UITableView.init(frame: .zero, style: .grouped)
     
+    ///Заголовок в NavigationBar
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -43,12 +47,15 @@ class HabitDetailsViewController: UIViewController {
         super.viewDidLoad()
         view.addSubview(detailsTableView)
         view.backgroundColor = UIColor(named: "My Light Grey Color")
+        
         titleLabel.text = habit.name
         titleLabel.textAlignment = .center
+        
         navigationItem.titleView = titleLabel
         navigationItem.largeTitleDisplayMode = .never
         navigationController?.navigationBar.tintColor = UIColor(named: "My Purple Color")
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Править", style: .plain, target: self, action: #selector(editAction))
+        
         setupTableView()
     }
     
@@ -83,15 +90,18 @@ extension HabitDetailsViewController: UITableViewDataSource, UITableViewDelegate
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        ///Не используем "Сегодня", поэтому на 1 меньше
         return HabitsStore.shared.dates.count - 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DetailCell", for: indexPath)
         
+        ///Формат отображения времени
         let formatter = DateFormatter()
         formatter.dateFormat = "dd MMMM y"
         
+        ///Номер ячейки массива, чтобы даты показывались от новых к старым. "- 2 " - потому что не используем сегодняшнюю дату
         let habitNumber = HabitsStore.shared.dates.count - 2 - indexPath.item
         
         switch habitNumber {

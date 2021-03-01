@@ -68,6 +68,7 @@ class HabitCollectionViewCell: UICollectionViewCell {
         return someView
     }()
     
+    ///Галочка выполненной привычки
     private let checkMarkImageView: UIImageView = {
            let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -76,6 +77,7 @@ class HabitCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
     
+    ///Делегат для обновления коллекции
     var delegate: ReloadCollectionView?
     
     // MARK: - INIT
