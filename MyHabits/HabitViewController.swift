@@ -22,8 +22,9 @@ class HabitViewController: UIViewController {
     
     ///Навигейшн бар для названия и кнопок сохранения и отмены
     private let navBar: UINavigationBar = {
-        let bar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 44))
+        let bar = UINavigationBar()
         bar.backgroundColor = UIColor(named: "My Light Grey Color")
+        bar.translatesAutoresizingMaskIntoConstraints = false
         return bar
     }()
     
@@ -139,7 +140,6 @@ class HabitViewController: UIViewController {
     // MARK: - FUNCTIONS
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         navigationItem.largeTitleDisplayMode = .never
         
         navItem.title = "Создать"
@@ -240,6 +240,10 @@ class HabitViewController: UIViewController {
         view.addSubviews(titleLabel, habitTextField, colorTitleLabel, colorCircleView, timeTitleLabel, timeTextLabel, timeTextField)
         
         var constraints = [
+            navBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            navBar.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            navBar.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            navBar.heightAnchor.constraint(equalToConstant: 44),
                        
             titleLabel.topAnchor.constraint(equalTo: navBar.bottomAnchor, constant: 22),
             titleLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
